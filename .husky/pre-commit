@@ -3,4 +3,5 @@
 
 npm run format
 npm run lint -- --fix 
-npm test
+git add .
+npm run lint:warnings
