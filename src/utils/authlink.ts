@@ -1,4 +1,4 @@
-import configuration from 'src/config/configuration';
+import configuration from '../config/configuration';
 import { v4 as uuidv4 } from 'uuid';
 
 /**

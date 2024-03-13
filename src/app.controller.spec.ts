@@ -16,7 +16,11 @@ describe('AppController', () => {
 
   describe('root', () => {
     it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe('Hello World!');
+      expect(appController.getHello()).toEqual({
+        status: 'ok',
+        version: '1.0.0',
+        serverMessage: 'Server is up and running',
+      });
     });
   });
 });
