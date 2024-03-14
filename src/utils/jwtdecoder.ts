@@ -1,7 +1,7 @@
 import { Logger } from '@nestjs/common';
 import * as jwt from 'jsonwebtoken';
 
-import { keys } from 'src/common/constants/output-keys';
+import { keys } from '../common/constants/output-keys';
 import { IBasicUserDetails } from 'src/digilocker/interface/user-details.interface';
 
 /**
