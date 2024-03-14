@@ -21,6 +21,7 @@ module.exports = {
     '@typescript-eslint/no-extra-semi': 'off',
     'no-extra-semi': 'off',
     'no-console': 'warn',
+    "no-prototype-builtins": "off",
     'padding-line-between-statements': [
       'error',
       { blankLine: 'always', prev: 'class', next: '*' },
