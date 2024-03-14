@@ -1,14 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { HealthCheckDto, ProviderDto } from './app.dto';
 import { providers } from './common/provider';
-import { digiLocker, googleAuth } from './utils/authlink';
+import { EAuth } from './utils/authlink';
 
 @Injectable()
 export class AppService {
+  private auth: EAuth;
+
+  constructor() {
+    // Initialize the authentication utility
+    this.auth = new EAuth();
+  }
+
   /**
-   * Returns a greeting message.
+   * Returns a greeting message indicating the status of the server.
    *
-   * @returns A greeting message.
+   * @returns A HealthCheckDto object representing the status of the server.
    */
   getHello(): HealthCheckDto {
     return {
@@ -21,30 +28,33 @@ export class AppService {
   /**
    * Retrieves provider information and updates the redirect URL based on the provider code.
    *
-   * @returns An array of provider objects.
+   * @returns An array of ProviderDto objects representing the available providers with updated redirect URLs.
    */
   getProviders(): ProviderDto[] {
     // Iterate through each provider and update the redirect URL
     providers.forEach((provider) => {
-      provider.redirectUrl = updateRedirectUrl(provider.code);
+      provider.redirectUrl = this.updateRedirectUrl(provider.code);
     });
     return providers;
   }
-}
 
-/**
- * Updates the redirect URL based on the provided provider code.
- *
- * @param code The code of the provider.
- * @returns The updated redirect URL.
- */
-function updateRedirectUrl(code: string): string {
-  switch (code) {
-    case 'digilocker':
-      return digiLocker();
-    case 'googleAuth':
-      return googleAuth();
-    default:
-      return '';
+  /**
+   * Updates and returns the redirect URL based on the provider code.
+   *
+   * @param code The code representing the provider.
+   * @returns The updated redirect URL.
+   */
+  private updateRedirectUrl(code: string): string {
+    switch (code) {
+      case 'digilocker':
+        // Generate the redirect URL for Digilocker authentication
+        return this.auth.digiLocker();
+      case 'googleAuth':
+        // Generate the redirect URL for Google authentication
+        return this.auth.googleAuth();
+      default:
+        // If the provider code is not recognized, return an empty string
+        return '';
+    }
   }
 }

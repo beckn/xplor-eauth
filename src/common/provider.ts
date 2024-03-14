@@ -1,3 +1,9 @@
+/**
+ * Array containing provider objects.
+ * Each provider object represents a different authentication provider.
+ * It includes properties such as code, icon link, title, subtitle, and redirect URL.
+ * This array can be used to configure multiple authentication providers in an application.
+ */
 export const providers = [
   {
     code: 'digilocker',
