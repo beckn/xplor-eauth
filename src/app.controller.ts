@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 
 import { AppService } from './app.service';
-import { HealthCheckDto, ProviderDto } from './app.dto';
+import { IHealthCheck, IProvider } from './app.interface';
 
 @Controller()
 export class AppController {
@@ -9,22 +9,23 @@ export class AppController {
 
   // Handler for the root endpoint
   @Get()
-  getHello(): HealthCheckDto {
+  getHello(): IHealthCheck {
     // Call the AppService to get the health check data
     return this.appService.getHello();
   }
 
   // Handler for the '/health' endpoint
   @Get('/health')
-  getHealth(): HealthCheckDto {
+  getHealth(): IHealthCheck {
     // Call the AppService to get the health check data
     return this.appService.getHello();
   }
 
   // Handler for the '/providers' endpoint
   @Get('/providers')
-  getProviders(): ProviderDto[] {
+  getProviders(): { success: boolean; data: IProvider[] } {
     // Call the AppService to get the list of providers
-    return this.appService.getProviders();
+    const providers: IProvider[] = this.appService.getProviders();
+    return { success: true, data: providers };
   }
 }
