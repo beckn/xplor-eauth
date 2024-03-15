@@ -63,16 +63,13 @@ describe('AppController', () => {
         },
       ];
       // Make the request to the controller method
-      const result: { success: boolean; data: IProvider[] } = controller.getProviders();
+      const result: IProvider[] = controller.getProviders();
       mockProviders.forEach((_provider, index) => {
-        mockProviders[index].redirectUrl = result.data[index].redirectUrl;
+        mockProviders[index].redirectUrl = result[index].redirectUrl;
       });
 
       // Assert that the response contains the updated providers
-      expect(result).toEqual({
-        success: true,
-        data: mockProviders,
-      });
+      expect(result).toEqual(mockProviders);
     });
   });
 });

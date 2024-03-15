@@ -1,4 +1,6 @@
 import { NestFactory } from '@nestjs/core';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 
@@ -15,6 +17,13 @@ async function bootstrap() {
 
   // Set global prefix for all routes
   app.setGlobalPrefix('api/v1');
+  const config = new DocumentBuilder()
+    .setTitle('Eauth API')
+    .setDescription('This API provides endpoints for Eauth')
+    .setVersion('1.0')
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api/v1', app, document);
 
   // Start the application and listen on port 3000
   await app.listen(3000);

@@ -1,8 +1,10 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { DigilockerService } from './digilocker.service';
-
+import { ApiResponse, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { GetUserQueryDto } from './dto/get-user-query.dto';
+import { UserDetailsResponse } from './digilocker.entity';
 
+@ApiTags('Digilocker')
 @Controller('digilocker')
 export class DigilockerController {
   constructor(private readonly digilockerService: DigilockerService) {}
@@ -14,21 +16,19 @@ export class DigilockerController {
    * @returns Object containing user details fetched from Digilocker, wrapped in a success status.
    */
   @Get('/get-user-details')
-  async getUserDetails(@Query() code: GetUserQueryDto): Promise<{ success: boolean; data: any }> {
+  @ApiQuery({ name: 'code', type: String })
+  @ApiResponse({
+    status: 200,
+    description: 'Returns the list of providers.',
+    type: UserDetailsResponse, // Assuming IProvider is an interface or model representing the provider data
+  })
+  async getUserDetails(@Query() code: GetUserQueryDto): Promise<any> {
     try {
-      // Call the Digilocker service to get user details
-      const userDetails = await this.digilockerService.getUserDetails(code);
       // Return the user details along with success status
-      return {
-        success: true,
-        data: await userDetails,
-      };
+      return await this.digilockerService.getUserDetails(code);
     } catch (error) {
       // If an error occurs, return a failed response along with the error data
-      return {
-        success: false,
-        data: error.message,
-      };
+      return error.message;
     }
   }
 }

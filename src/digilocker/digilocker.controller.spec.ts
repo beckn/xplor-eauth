@@ -54,10 +54,7 @@ describe('DigilockerController', () => {
       const result = await controller.getUserDetails(code);
 
       // Assert that the result matches the expected user details response
-      expect(result).toEqual({
-        success: true,
-        data: userDetails,
-      });
+      expect(result).toEqual(userDetails);
     });
 
     // Test case to verify that getUserDetails handles errors and returns false success
@@ -73,10 +70,7 @@ describe('DigilockerController', () => {
       const result = await controller.getUserDetails(code);
 
       // Assert that the result indicates false success and contains the error message
-      expect(result).toEqual({
-        success: false,
-        data: error.message,
-      });
+      expect(result).toEqual(error.message);
     });
   });
 });
