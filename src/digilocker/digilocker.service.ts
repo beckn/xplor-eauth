@@ -63,7 +63,6 @@ export class DigilockerService {
           token_type: token.token_type,
           expires_in: token.expires_in,
           refresh_token: token.refresh_token,
-          scope: token.scope,
           consent_valid_till: token.consent_valid_till,
         };
         // Update user details with Digilocker ID and verification status
