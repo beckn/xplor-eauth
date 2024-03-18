@@ -58,10 +58,11 @@ export class DigilockerService {
         // Decode JWT token from dummy data
         const userDetails: IBasicUserDetails = this.jwtDecoder.decodeToken(data.id_token);
         // Return token details and user details
-        return {
+        const result = {
           tokenDetails: data,
           userDetails: userDetails,
         };
+        return result;
       }
     }
   }

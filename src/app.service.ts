@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { HealthCheckDto, ProviderDto } from './app.dto';
+
+import { IHealthCheck, IProvider } from './app.interface';
 import { providers } from './common/provider';
 import { EAuth } from './utils/authlink';
 
@@ -17,7 +18,7 @@ export class AppService {
    *
    * @returns A HealthCheckDto object representing the status of the server.
    */
-  getHello(): HealthCheckDto {
+  getHello(): IHealthCheck {
     return {
       status: 'ok',
       version: '1.0.0',
@@ -30,7 +31,7 @@ export class AppService {
    *
    * @returns An array of ProviderDto objects representing the available providers with updated redirect URLs.
    */
-  getProviders(): ProviderDto[] {
+  getProviders(): IProvider[] {
     // Iterate through each provider and update the redirect URL
     providers.forEach((provider) => {
       provider.redirectUrl = this.updateRedirectUrl(provider.code);

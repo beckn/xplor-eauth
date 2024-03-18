@@ -1,7 +1,7 @@
 /**
  * Represents the structure of a provider object, typically used for storing information about various authentication providers.
  */
-export interface ProviderDto {
+export interface IProvider {
   code: string;
   iconLink: string;
   title: string;
@@ -12,7 +12,7 @@ export interface ProviderDto {
 /**
  * Represents the structure of a health check response object, typically used for reporting the health status of a microservice.
  */
-export interface HealthCheckDto {
+export interface IHealthCheck {
   status: string;
   version: string;
   serverMessage: string;
