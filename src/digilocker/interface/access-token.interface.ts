@@ -8,7 +8,7 @@ export interface IAccessToken {
   token_type: string; // The type of token (e.g., Bearer)
   scope: string; // The scope of the token
   consent_valid_till: number; // The timestamp until the consent is valid (UNIX timestamp)
-  id_token: string; // The ID token string
+  id_token?: string; // The ID token string
   refresh_token?: string; // The refresh token string
   digilockerid?: string; // The Digilocker ID
 }
