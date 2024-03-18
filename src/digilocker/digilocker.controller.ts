@@ -1,6 +1,7 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import { DigilockerService } from './digilocker.service';
 import { ApiResponse, ApiQuery, ApiTags } from '@nestjs/swagger';
+
+import { DigilockerService } from './digilocker.service';
 import { GetUserQueryDto } from './dto/get-user-query.dto';
 import { UserDetailsResponse } from './digilocker.entity';
 
