@@ -12,4 +12,6 @@ export class IBasicUserDetails {
   pan_number: string; // The PAN number of the user
   driving_licence: string; // The driving licence number of the user
   masked_aadhaar: string; // The masked Aadhaar number of the user
+  digilockerid?: string; // The Digilocker ID of the user
+  verified?: boolean | false; // Whether the user is verified
 }
