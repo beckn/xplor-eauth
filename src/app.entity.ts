@@ -1,6 +1,6 @@
-import { IHealthCheck, IProvider } from './app.interface';
-
 import { ApiProperty } from '@nestjs/swagger';
+
+import { IHealthCheck, IProvider } from './app.interface';
 
 export class HealthCheckEntity implements IHealthCheck {
   @ApiProperty({ description: 'The status of the health check.' })

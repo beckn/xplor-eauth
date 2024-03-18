@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class AccessToken {
+export class AccessTokenEntity {
   @ApiProperty({ description: 'The access token string' })
   access_token: string;
 
@@ -20,7 +20,7 @@ export class AccessToken {
   id_token: string;
 }
 
-export class UserDetails {
+export class UserDetailsEntity {
   @ApiProperty({ description: 'The given name of the user' })
   given_name: string;
 
@@ -50,8 +50,8 @@ export class UserDetails {
 }
 export class UserDetailsResponse {
   @ApiProperty({ description: 'Details of the access token' })
-  tokenDetails: AccessToken;
+  tokenDetails: AccessTokenEntity;
 
   @ApiProperty({ description: 'Details of the user' })
-  userDetails: UserDetails;
+  userDetails: UserDetailsEntity;
 }

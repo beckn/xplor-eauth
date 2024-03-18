@@ -4,6 +4,7 @@ import { DigilockerController } from './digilocker.controller';
 import { DigilockerService } from './digilocker.service';
 import { GetUserQueryDto } from './dto/get-user-query.dto';
 import { dummyData } from '../common/constants/dummy-response';
+import { GetTokenQueryDto } from './dto/get-token-query-dto';
 
 describe('DigilockerController', () => {
   let controller: DigilockerController;
@@ -71,6 +72,28 @@ describe('DigilockerController', () => {
 
       // Assert that the result indicates false success and contains the error message
       expect(result).toEqual(error.message);
+    });
+
+    it('should return a valid access token when refreshing token', async () => {
+      // Mocking request query
+      const refresh_token: GetTokenQueryDto = {} as GetTokenQueryDto;
+
+      // Mocking service method
+      const mockedResult = {
+        access_token: 'bc125c212a4b03a9a188a858be5a163f379e878a',
+        token_type: 'Bearer',
+        expires_in: 3600,
+        refresh_token: 'a47ab18c593703e4f83a274694db7422a8cfcb8f',
+        scope: 'files.issueddocs partners.PANCR partners.DRVLC',
+        consent_valid_till: 1684731048,
+      };
+      jest.spyOn(service, 'getRefreshAccessToken').mockResolvedValue(mockedResult);
+
+      // Call the method under test
+      const result = await controller.getAcessToken(refresh_token);
+
+      // Verify the result
+      expect(result).toEqual(mockedResult);
     });
   });
 });
