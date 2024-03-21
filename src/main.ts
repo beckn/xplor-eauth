@@ -3,10 +3,12 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
 
 import { AppModule } from './app.module';
+import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
   // Create the Nest application instance
   const app = await NestFactory.create(AppModule, { cors: true });
+  const configService = app.get(ConfigService);
 
   // Set up global validation pipe to apply validation to incoming requests
   app.useGlobalPipes(
@@ -26,7 +28,7 @@ async function bootstrap() {
   SwaggerModule.setup('api/v1', app, document);
 
   // Start the application and listen on port 3000
-  await app.listen(3000);
+  await app.listen(configService.get<string>('port'));
 }
 
 bootstrap();

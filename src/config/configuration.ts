@@ -6,7 +6,7 @@
  * @returns Configuration object with environment-based settings.
  */
 export default () => ({
-  port: parseInt(process.env.PORT, 10) || 5000,
+  port: parseInt(process.env.PORT, 10) || 4000,
   node_env: process.env.NODE_ENV || 'development',
   digilocker_base_url: process.env.DIGILOCKER_BASE_URL,
   digilocker_client_id: process.env.DIGILOCKER_CLIENT_ID,
