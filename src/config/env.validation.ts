@@ -7,11 +7,11 @@
  */
 import * as Joi from 'joi';
 export default () => ({
-  NODE_ENV: Joi.string().valid('development', 'production', 'test', 'provision').default('development'),
-  PORT: Joi.number().port().default(3000),
-  DIGILOCKER_BASE_URL: Joi.string(),
-  DIGILOCKER_CLIENT_ID: Joi.string(),
-  DIGILOCKER_SECRET: Joi.string(),
-  DIGILOCKER_REDIRECT_URL: Joi.string().default('https://www.google.com/'),
-  GOOGLE_CLIENT_ID: Joi.string(),
+  NODE_ENV: Joi.string().valid('development', 'production', 'test', 'provision').default('development').required(),
+  PORT: Joi.number().port().default(4000).required(),
+  DIGILOCKER_BASE_URL: Joi.string().required(),
+  DIGILOCKER_CLIENT_ID: Joi.string().required(),
+  DIGILOCKER_SECRET: Joi.string().required(),
+  DIGILOCKER_REDIRECT_URL: Joi.string().default('https://www.google.com/').required(),
+  GOOGLE_CLIENT_ID: Joi.string().required(),
 });
