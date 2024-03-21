@@ -1,6 +1,6 @@
 version: '3'
 services:
-  backend:
+ backend:
     container_name: E-Auth-nest-backend
     build: .
     environment:
@@ -12,7 +12,11 @@ services:
       - GOOGLE_CLIENT_ID= ${GOOGLE_CLIENT_ID}
       - GOOGLE_SECRET_KEY= ${GOOGLE_SECRET_KEY}
       - PORT= ${PORT}
-
     ports:
       - 1068:4000
     restart: always
+    networks:
+      - xplor-network
+networks:
+ xplor-network:
+    external: true
