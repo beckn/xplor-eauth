@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { firstValueFrom } from 'rxjs';
 
-import { dummyData, dummyTokenData } from './../common/constants/dummy-response';
+import { dummyTokenData } from './../common/constants/dummy-response';
 import { JwtDecoder } from './../utils/jwtdecoder';
 import { IBasicUserDetails } from './interface/user-details.interface';
 import { GetUserQueryDto } from './dto/get-user-query.dto';
@@ -46,38 +46,11 @@ export class DigilockerService {
       const response = await firstValueFrom(
         this.http.post(url, this.httpData.tokenData(code), this.httpConfig.formUrlEncodedData()),
       );
-      return response.data;
+      const data = response.data;
+      const userDetails: IBasicUserDetails = this.jwtDecoder.decodeToken(data.id_token);
+      return userDetails;
     } catch (error) {
-      // Handle errors
-      if (error.code === 'ERR_BAD_REQUEST') {
-        // Use dummy data for testing
-        let data = dummyData;
-        // Decode JWT token from dummy data
-        let userDetails: IBasicUserDetails = this.jwtDecoder.decodeToken(data.id_token);
-        // Retrieve refresh token
-        const token: IAccessToken = await this.getRefreshToken(code);
-        // Update data with new token details
-        data = {
-          ...data,
-          access_token: token.access_token,
-          token_type: token.token_type,
-          expires_in: token.expires_in,
-          refresh_token: token.refresh_token,
-          consent_valid_till: token.consent_valid_till,
-        };
-        // Update user details with Digilocker ID and verification status
-        userDetails = {
-          ...userDetails,
-          digilockerid: token.digilockerid,
-          verified: true,
-        };
-        // Prepare result object
-        const result = {
-          tokenDetails: data,
-          userDetails: userDetails,
-        };
-        return result;
-      }
+      return error?.response?.data;
     }
   }
 

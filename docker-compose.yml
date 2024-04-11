@@ -13,7 +13,7 @@ services:
       - GOOGLE_SECRET_KEY= ${GOOGLE_SECRET_KEY}
       - PORT= ${PORT}
     ports:
-      - 1068:4000
+      - 1068:${PORT}
     restart: always
     networks:
       - xplor-network

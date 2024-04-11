@@ -31,12 +31,12 @@ export class AppService {
    *
    * @returns An array of ProviderDto objects representing the available providers with updated redirect URLs.
    */
-  getProviders(): IProvider[] {
+  getProviders(): IProvider {
     // Iterate through each provider and update the redirect URL
     providers.forEach((provider) => {
       provider.redirectUrl = this.updateRedirectUrl(provider.code);
     });
-    return providers;
+    return providers[0];
   }
 
   /**

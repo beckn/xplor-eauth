@@ -26,6 +26,7 @@ export class HttpData {
     const clientId = this.config.get<string>('DIGILOCKER_CLIENT_ID');
     const clientSecret = this.config.get<string>('DIGILOCKER_SECRET');
     const redirectUri = this.config.get<string>('DIGILOCKER_REDIRECT_URL');
+    const codeVerifier = this.config.get<string>('CODE_VERIFIER');
 
     // Construct data for access token request
     const data = new URLSearchParams();
@@ -34,6 +35,7 @@ export class HttpData {
     data.append('code', code.code);
     data.append('grant_type', 'authorization_code');
     data.append('redirect_uri', redirectUri);
+    data.append('code_verifier', codeVerifier);
 
     return data;
   }

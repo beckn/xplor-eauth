@@ -41,34 +41,4 @@ describe('DigilockerService', () => {
     // Assert that the service is not null or undefined
     expect(service).toBeDefined();
   });
-
-  it('should update redirect URLs for providers', () => {
-    // Call the getProviders method
-    const updatedProviders = service.getProviders();
-    updatedProviders.forEach((provider) => {
-      if (provider.code === 'digilocker') {
-        provider.redirectUrl = 'https://example.com/digilocker';
-      } else if (provider.code === 'googleAuth') {
-        provider.redirectUrl = 'https://example.com/google-auth';
-      }
-    });
-
-    // Assert that the redirect URLs are updated correctly
-    expect(updatedProviders).toEqual([
-      {
-        code: 'digilocker',
-        iconLink: 'https://example.com/icon1.png',
-        title: 'Provider 1',
-        subTitle: 'Sub Title 1',
-        redirectUrl: 'https://example.com/digilocker', // Assert updated redirect URL
-      },
-      {
-        code: 'googleAuth',
-        iconLink: 'https://example.com/icon2.png',
-        title: 'Provider 2',
-        subTitle: 'Sub Title 2',
-        redirectUrl: 'https://example.com/google-auth', // Assert updated redirect URL
-      },
-    ]);
-  });
 });

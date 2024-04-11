@@ -17,13 +17,16 @@ export class EAuth {
     // Retrieve necessary configuration values
     const baseUrl = this.config.get<string>('DIGILOCKER_BASE_URL');
     const clientId = this.config.get<string>('DIGILOCKER_CLIENT_ID');
+    const codeChallenge = this.config.get<string>('CODE_CHALLENGE');
+    const codeChallengeMethod = this.config.get<string>('CODE_CHALLENGE_METHOD');
+    const scope = this.config.get<string>('DIGILOCKER_SCOPE');
+
     const state = uuidv4();
     const redirectUrl = this.config.get<string>('DIGILOCKER_REDIRECT_URL');
 
     // Construct and return the DigiLocker authorization URL
-    return `${baseUrl}/1/authorize?client_id=${clientId}&response_type=code&redirect_uri=${redirectUrl}&state=${state}&dl_flow=signup&scope=openid&amr=all&purpose=kyc`;
+    return `${baseUrl}/1/authorize?response_type=code&client_id=${clientId}&state=${state}&redirect_uri=${redirectUrl}&code_challenge=${codeChallenge}&code_challenge_method=${codeChallengeMethod}&scope=${scope}`;
   }
-
   /**
    * Generates a Google OAuth 2.0 authorization URL with the specified client ID, redirect URI, and scope.
    *
