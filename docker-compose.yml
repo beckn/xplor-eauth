@@ -1,6 +1,6 @@
 version: '3'
 services:
- backend:
+ e_auth_backend:
     container_name: E-Auth-nest-backend
     build: .
     environment:

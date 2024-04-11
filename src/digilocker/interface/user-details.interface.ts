@@ -16,5 +16,4 @@ export class IBasicUserDetails {
   verified?: boolean | false; // Whether the user is verified
   gender?: string; // The gender of the user
   addres?: any;
-
 }
