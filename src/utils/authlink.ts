@@ -1,5 +1,5 @@
 import { ConfigService } from '@nestjs/config';
-
+import * as crypto from 'crypto';
 export class EAuth {
   private config: ConfigService;
 
