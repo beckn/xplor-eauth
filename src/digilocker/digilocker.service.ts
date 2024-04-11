@@ -5,7 +5,6 @@ import { firstValueFrom } from 'rxjs';
 
 import { dummyTokenData } from './../common/constants/dummy-response';
 import { JwtDecoder } from './../utils/jwtdecoder';
-import { IBasicUserDetails } from './interface/user-details.interface';
 import { GetUserQueryDto } from './dto/get-user-query.dto';
 import { HttpData } from '../common/http-data';
 import { HttpConfig } from '../common/http-config';
@@ -44,10 +43,10 @@ export class DigilockerService {
     try {
       // Send HTTP request to Digilocker
       const response = await firstValueFrom(
-        this.http.post(url, this.httpData.tokenData(code), this.httpConfig.formUrlEncodedData()),
+        this.http.post(url, this.httpData.tokenData(code.code, code.state), this.httpConfig.formUrlEncodedData()),
       );
       const data = response.data;
-      const userDetails: IBasicUserDetails = this.jwtDecoder.decodeToken(data.id_token);
+      const userDetails = this.jwtDecoder.decodeToken(data.id_token);
       return userDetails;
     } catch (error) {
       return error?.response?.data;
@@ -66,7 +65,7 @@ export class DigilockerService {
     try {
       // Send HTTP request to Digilocker
       const response = await firstValueFrom(
-        this.http.post(url, this.httpData.tokenData(code), this.httpConfig.formUrlEncodedData()),
+        this.http.post(url, this.httpData.tokenData(code.code, code.state), this.httpConfig.formUrlEncodedData()),
       );
       return response.data;
     } catch (error) {

@@ -1,8 +1,9 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Req } from '@nestjs/common';
 import { ApiTags, ApiResponse } from '@nestjs/swagger';
 import { AppService } from './app.service';
-import { IHealthCheck, IProvider } from './app.interface';
+import { IHealthCheck } from './app.interface';
 import { HealthCheckEntity, ProviderEntity } from './app.entity';
+import { Request } from 'express';
 
 @ApiTags('Eauth Providers API')
 @Controller()
@@ -40,8 +41,8 @@ export class AppController {
     description: 'Returns the list of providers.',
     type: [ProviderEntity], // Assuming IProvider is an interface or model representing the provider data
   })
-  getProviders(): IProvider {
+  getProviders(@Req() req: Request) {
     // Call the AppService to get the list of providers
-    return this.appService.getProviders();
+    return this.appService.getProviders(req);
   }
 }

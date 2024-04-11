@@ -1,8 +1,6 @@
 import { ConfigService } from '@nestjs/config';
 
 import { GetTokenQueryDto } from 'src/digilocker/dto/get-token-query-dto';
-import { GetUserQueryDto } from 'src/digilocker/dto/get-user-query.dto';
-
 /**
  * Helper class for constructing data for HTTP requests related to Digilocker API.
  */
@@ -21,18 +19,18 @@ export class HttpData {
    * @param code The authorization code received from Digilocker authorization callback.
    * @returns URLSearchParams containing the required parameters for access token request.
    */
-  tokenData(code: GetUserQueryDto) {
+  tokenData(code: string, state: string) {
     // Get configuration values
     const clientId = this.config.get<string>('DIGILOCKER_CLIENT_ID');
     const clientSecret = this.config.get<string>('DIGILOCKER_SECRET');
     const redirectUri = this.config.get<string>('DIGILOCKER_REDIRECT_URL');
-    const codeVerifier = this.config.get<string>('CODE_VERIFIER');
+    const codeVerifier = state;
 
     // Construct data for access token request
     const data = new URLSearchParams();
     data.append('client_id', clientId);
     data.append('client_secret', clientSecret);
-    data.append('code', code.code);
+    data.append('code', code);
     data.append('grant_type', 'authorization_code');
     data.append('redirect_uri', redirectUri);
     data.append('code_verifier', codeVerifier);

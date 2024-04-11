@@ -8,4 +8,8 @@ export class GetUserQueryDto {
   @IsNotEmpty()
   @IsString()
   code: string; // The authorization code received from Digilocker authorization api
+
+  @IsNotEmpty()
+  @IsString()
+  state: string;
 }

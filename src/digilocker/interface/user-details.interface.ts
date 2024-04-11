@@ -14,4 +14,7 @@ export class IBasicUserDetails {
   masked_aadhaar: string; // The masked Aadhaar number of the user
   digilockerid?: string; // The Digilocker ID of the user
   verified?: boolean | false; // Whether the user is verified
+  gender?: string; // The gender of the user
+  addres?: any;
+
 }
