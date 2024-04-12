@@ -1,0 +1,22 @@
+version: '3'
+services:
+ e_auth_backend:
+    container_name: E-Auth-nest-backend
+    build: .
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - DIGILOCKER_BASE_URL = ${DIGILOCKER_BASE_URL}
+      - DIGILOCKER_CLIENT_ID= ${DIGILOCKER_CLIENT_ID}
+      - DIGILOCKER_SECRET= ${DIGILOCKER_SECRET}
+      - DIGILOCKER_REDIRECT_URL= ${DIGILOCKER_REDIRECT_URL}
+      - GOOGLE_CLIENT_ID= ${GOOGLE_CLIENT_ID}
+      - GOOGLE_SECRET_KEY= ${GOOGLE_SECRET_KEY}
+      - PORT= ${PORT}
+    ports:
+      - 1068:${PORT}
+    restart: always
+    networks:
+      - xplor-network
+networks:
+ xplor-network:
+    external: true
