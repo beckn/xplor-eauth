@@ -18,7 +18,7 @@ async function bootstrap() {
   );
 
   // Set global prefix for all routes
-  app.setGlobalPrefix('api/v1');
+  app.setGlobalPrefix('api/v1', { exclude: ['/', '/health'] });
   const config = new DocumentBuilder()
     .setTitle('Eauth API')
     .setDescription('This API provides endpoints for Eauth')

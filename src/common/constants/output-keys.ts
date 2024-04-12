@@ -12,4 +12,6 @@ export const keys = [
   'pan_number',
   'driving_licence',
   'masked_aadhaar',
+  'gender',
+  'address',
 ];

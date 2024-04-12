@@ -22,16 +22,16 @@ export class AccessTokenEntity {
 
 export class UserDetailsEntity {
   @ApiProperty({ description: 'The given name of the user' })
-  given_name: string;
+  lastName: string;
 
   @ApiProperty({ description: 'The preferred username of the user' })
-  preferred_username: string;
+  firstName: string;
 
   @ApiProperty({ description: 'The email address of the user' })
   email: string;
 
   @ApiProperty({ description: 'The birthdate of the user' })
-  birthdate: string;
+  gender: string;
 
   @ApiProperty({ description: 'The phone number of the user' })
   phone_number: string;
@@ -48,6 +48,7 @@ export class UserDetailsEntity {
   @ApiProperty({ description: 'The masked Aadhaar number of the user' })
   masked_aadhaar: string;
 }
+
 export class UserDetailsResponse {
   @ApiProperty({ description: 'Details of the access token' })
   tokenDetails: AccessTokenEntity;
