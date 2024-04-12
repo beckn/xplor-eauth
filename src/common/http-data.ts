@@ -21,9 +21,9 @@ export class HttpData {
    */
   tokenData(code: string, state: string) {
     // Get configuration values
-    const clientId = this.config.get<string>('DIGILOCKER_CLIENT_ID');
-    const clientSecret = this.config.get<string>('DIGILOCKER_SECRET');
-    const redirectUri = this.config.get<string>('DIGILOCKER_REDIRECT_URL');
+    const clientId = this.config.get<string>('DIGILOCKER_CLIENT_ID').trim();
+    const clientSecret = this.config.get<string>('DIGILOCKER_SECRET').trim();
+    const redirectUri = this.config.get<string>('DIGILOCKER_REDIRECT_URL').trim();
     const codeVerifier = state;
 
     // Construct data for access token request
