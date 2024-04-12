@@ -21,6 +21,7 @@ module.exports = {
     '@typescript-eslint/no-extra-semi': 'off',
     'no-extra-semi': 'off',
     'no-console': 'warn',
+    "no-prototype-builtins": "off",
     'padding-line-between-statements': [
       'error',
       { blankLine: 'always', prev: 'class', next: '*' },
@@ -32,7 +33,7 @@ module.exports = {
         next: ['const', 'let', 'var'],
       },
     ],
-    'no-unused-vars':'off',
+    'no-unused-vars': 'off',
     'id-match': 0,
 
     // Turn on prettier rules
@@ -51,4 +52,4 @@ module.exports = {
       },
     ],
   },
-}
+};
