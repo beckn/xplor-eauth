@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
@@ -46,7 +47,9 @@ export class DigilockerService {
         this.http.post(url, this.httpData.tokenData(code.code, code.state), this.httpConfig.formUrlEncodedData()),
       );
       const data = response.data;
+      console.log('data============', data);
       const userDetails = this.jwtDecoder.decodeToken(data.id_token);
+      console.log('userDetails', userDetails);
       return userDetails;
     } catch (error) {
       return error?.response?.data;
