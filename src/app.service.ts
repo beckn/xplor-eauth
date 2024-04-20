@@ -4,6 +4,8 @@ import { IHealthCheck } from './app.interface';
 import { providers } from './common/provider';
 import { EAuth } from './utils/authlink';
 import { Request } from 'express';
+import { getSuccessResponse } from './common/get-response';
+import { HttpResponseMessage } from './common/constants/http-message';
 
 @Injectable()
 export class AppService {
@@ -38,7 +40,7 @@ export class AppService {
 
     providers[0].redirectUrl = await this.updateRedirectUrl('digilocker', `${type} ${token}`);
 
-    return providers[0];
+    return getSuccessResponse(providers[0], HttpResponseMessage.OK);
   }
 
   /**
