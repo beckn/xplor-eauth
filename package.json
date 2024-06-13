@@ -82,7 +82,15 @@
       "^.+\\.(t|j)s$": "ts-jest"
     },
     "collectCoverageFrom": [
-      "**/*.(t|j)s"
+      "**/*.(t|j)s",
+      "!**/app.module.ts",
+      "!**/main.ts",
+      "!**/common/logger-payload-dto.ts",
+      "!**/common/constants/logger-message.ts",
+      "!**/utils/grafana/grafana-axios.ts",
+      "!**/utils/grafana/grafana-logger.service.ts",
+      "!**/utils/logger-interceptor.ts",
+      "!**/digilocker/interface/user-details.interface.ts"
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"

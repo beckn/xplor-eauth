@@ -14,11 +14,11 @@ export class EAuth {
    */
   async digiLocker(userId: string) {
     // Retrieve necessary configuration values
-    const baseUrl = this.config.get<string>('DIGILOCKER_BASE_URL');
-    const clientId = this.config.get<string>('DIGILOCKER_CLIENT_ID').replace(' ', '');
-    const codeChallengeMethod = this.config.get<string>('CODE_CHALLENGE_METHOD');
+    const baseUrl = this.config.get<string>('DIGILOCKER_BASE_URL').replaceAll(' ', '');
+    const clientId = this.config.get<string>('DIGILOCKER_CLIENT_ID').replaceAll(' ', '');
+    const codeChallengeMethod = this.config.get<string>('CODE_CHALLENGE_METHOD').replaceAll(' ', '');
     const scope = this.config.get<string>('DIGILOCKER_SCOPE');
-    const redirectUrl = this.config.get<string>('DIGILOCKER_REDIRECT_URL').replace(' ', '');
+    const redirectUrl = this.config.get<string>('DIGILOCKER_REDIRECT_URL').replaceAll(' ', '');
     const codeChallenge = await this.generate_code_challenge(userId);
     if (codeChallenge) {
       return `${baseUrl}/1/authorize?response_type=code&client_id=${clientId}&state=${userId}&redirect_uri=${redirectUrl}&code_challenge=${codeChallenge}&code_challenge_method=${codeChallengeMethod}&scope=${scope}`;

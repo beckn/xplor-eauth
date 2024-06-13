@@ -1,12 +1,14 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
+import { APP_INTERCEPTOR } from '@nestjs/core';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DigilockerModule } from './digilocker/digilocker.module';
 import configuration from './config/configuration';
 import envValidation from './config/env.validation';
+import { LoggingInterceptor } from './utils/logger-interceptor';
 
 @Module({
   imports: [
@@ -23,6 +25,12 @@ import envValidation from './config/env.validation';
     DigilockerModule,
   ],
   controllers: [AppController], // Specifies controllers to be included in this module
-  providers: [AppService], // Specifies services to be included in this module
+  providers: [
+    AppService,
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: LoggingInterceptor,
+    },
+  ], // Specifies services to be included in this module
 })
 export class AppModule {}

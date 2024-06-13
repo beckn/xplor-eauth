@@ -12,6 +12,7 @@ services:
       - GOOGLE_CLIENT_ID= ${GOOGLE_CLIENT_ID}
       - GOOGLE_SECRET_KEY= ${GOOGLE_SECRET_KEY}
       - PORT= ${PORT}
+      - GRAFANA_SERVICE_URL=${GRAFANA_SERVICE_URL}
     ports:
       - 1068:${PORT}
     restart: always
